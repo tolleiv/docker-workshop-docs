@@ -31,8 +31,10 @@
 
 ### Monitoring
   * `docker stats`
+
 #### Resource limitation
   * `docker run --name "quotes" -m 100M -d tolleiv/randomquotes`
+  
 ### Configuration
  * `docker run --env TEST=works <image>`
  * `docker run --env TEST=works alpine env`
