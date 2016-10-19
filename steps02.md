@@ -24,19 +24,17 @@
 
 #### Creating an image
 
-    docker run -it --name git alpine sh
-      apk --update add git
-      git version
+    docker run -it --name jq alpine sh
+      apk --update add jq
+      ex
       exit
-    docker commit git docker-git
-    docker rm git
-    docker run --rm -it docker-git git version
-    docker rmi docker-git
+    docker commit jq docker-jq
+    docker rm jq
+    docker run --rm -it docker-jq jq --version
 
- Then tag your image under the registry namespace and push it there:
-
-  * `docker tag docker-git $REGISTRY/$(whoami)/docker-git`
-  * `docker push $REGISTRY/$(whoami)/docker-git`
-  * `docker rmi docker-git`
-  * `docker pull $REGISTRY/$(whoami)/hello-world`
+  * `docker tag docker-jq $REGISTRY/$(whoami)/docker-jq`
+  * `docker push $REGISTRY/$(whoami)/docker-jq`
+  * `docker rmi docker-jq`
+  * `docker pull $REGISTRY/$(whoami)/docker-jq`
+  * `docker run --rm -it $REGISTRY/$(whoami)/docker-jq jq --version`
  
