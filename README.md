@@ -2,11 +2,11 @@
 
 These are commands used during a Docker workshop. It is devided into these parts:
 
- * Steps 01 - Getting to know the Docker commandline 
- * Steps 02 - Creating Docker images
- * Steps 03 - Using the Dockerfile
- * Steps 04 - Using more then one container / docker networking
- * Steps 05 - Using docker-compose
+ * [Steps 01](./blob/master/steps01.md) - Getting to know the Docker commandline 
+ * [Steps 02](./blob/master/steps02.md) - Creating Docker images
+ * [Steps 03](./blob/master/steps03.md) - Using the Dockerfile
+ * [Steps 04](./blob/master/steps04.md) - Using more then one container / docker networking
+ * [Steps 05](./blob/master/steps05.md) - Using docker-compose
 
 
  ## References and reources
