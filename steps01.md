@@ -1,4 +1,9 @@
 ## Docker command line
+
+### What?
+
+![image](https://docs.docker.com/engine/article-img/architecture.svg)
+
 ### Docker container lifecycle
   * `docker create` creates a container but does not start it.
   * `docker rename` allows the container to be renamed.
@@ -34,7 +39,7 @@
 
 #### Resource limitation
   * `docker run --name "quotes" -m 100M -d tolleiv/randomquotes`
-  
+
 ### Configuration
  * `docker run --env TEST=works <image>`
  * `docker run --env TEST=works alpine env`
@@ -46,6 +51,8 @@
 
 ### Volumes
   * `docker run -d -v /hostDir:/containerDir <image>`
+  * `docker run -it -v $(pwd):/var/host alpine sh`
+
 
 ### Commands within running containers
  * `docker exec <container> <cmd>`
