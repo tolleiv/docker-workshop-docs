@@ -19,9 +19,9 @@
 [Examples](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
 
     FROM busybox:ubuntu-14.04
-    RUN echo “#!/bin/sh\n” > /test.sh
-    RUN echo “echo \”this is version 1\”” >> /test.sh
-    ENTRYPOINT [“sh”, “/test.sh”]
+    RUN echo "#!/bin/sh\n" > /test.sh
+    RUN echo "echo \"this is version 1\"" >> /test.sh
+    ENTRYPOINT ["sh", "/test.sh"]
     
     
 ##### Instructions
