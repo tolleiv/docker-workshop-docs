@@ -36,6 +36,7 @@
 
 ### Monitoring
   * `docker stats`
+  * `docker run  --health-cmd='xxx' ...`
 
 #### Resource limitation
   * `docker run --name "quotes" -m 100M -d tolleiv/randomquotes`
