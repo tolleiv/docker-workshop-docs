@@ -24,6 +24,9 @@
 
 #### Creating an image
 
+![image](https://www.docker.com/sites/default/files/WhatIsDocker_1_kernal-2_1.png)
+
+---
     docker run -it --name jq alpine sh
       apk --update add jq
       ex
@@ -37,4 +40,8 @@
   * `docker rmi docker-jq`
   * `docker pull $REGISTRY/$(whoami)/docker-jq`
   * `docker run --rm -it $REGISTRY/$(whoami)/docker-jq jq --version`
+  
+ ---
+  
+![image](https://docs.docker.com/engine/getstarted/tutimg/tagger.png)
  
