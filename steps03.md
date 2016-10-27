@@ -12,7 +12,7 @@
  * [PHP](https://hub.docker.com/_/php/)
  * [Golang](https://hub.docker.com/_/golang/)
  * [Busybox](https://hub.docker.com/_/busybox/)
- 
+
 #### Writing Dockerfiles
 
 [Best practices](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
@@ -22,8 +22,8 @@
     RUN echo "#!/bin/sh\n" > /test.sh
     RUN echo "echo \"this is version 1\"" >> /test.sh
     ENTRYPOINT ["sh", "/test.sh"]
-    
-    
+
+
 ##### Instructions
 
 * [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
@@ -48,6 +48,6 @@
 ### Exercise
 
 Write a Dockerfile for the image built in the last exercise. Check with the others in the course how you could reach a low amount of layers `docker history <image> | wc -l`
-    
-    
- 
+
+
+

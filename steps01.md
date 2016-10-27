@@ -26,13 +26,13 @@
   * `cat file.txt | docker run --rm -i <image> <cmd>`
   * `cat LICENSE | docker run --rm -i alpine wc -l`
   * `cat puppet.pp | docker run --rm -i tolleiv/puppet-lint rubocop` *** TBD
-  
+
 #### Run a detached script / daemon
   * `docker run --rm -d <image>`
   * `docker run --rm --name "quotes" -d tolleiv/randomquotes`
-  *  `docker ps`
-  *  `docker attach <id>`
-  *  `docker attach quotes`
+  * `docker ps`
+  * `docker attach <id>`
+  * `docker attach quotes`
 
 ### Monitoring
   * `docker stats`
@@ -44,7 +44,7 @@
 ### Configuration
  * `docker run --env TEST=works <image>`
  * `docker run --env TEST=works alpine env`
-  
+
 ### Ports
   * `docker run -d -p hostPort:containerPort <image>`
   * `docker run -d -p 8080:8080 tolleiv/pokesrv`
@@ -58,7 +58,7 @@
 ### Commands within running containers
  * `docker exec <container> <cmd>`
  * `docker exec <container> bash`
- 
+
 ## Exercise
 
 Run two `tolleiv/pokesrv` containers on your system and present your favorite Pokemon on both of them. Check the resource consumption of the containers.
@@ -68,8 +68,8 @@ Run two `tolleiv/pokesrv` containers on your system and present your favorite Po
 What are possible ways to change the health state of a container which is started like this:
 
     docker run -d --name=sick_boy --health-cmd='test -f /healthy.txt' --health-interval=2s busybox sleep 1d
-    
+
 Health check can be run with:
 
     docker inspect --format='{{.State.Health.Status}}' sick_boy
-    
+

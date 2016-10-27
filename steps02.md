@@ -41,9 +41,9 @@
   * `docker pull $REGISTRY/$(whoami)/docker-jq`
   * `docker history <image>`
   * `docker run --rm -it $REGISTRY/$(whoami)/docker-jq jq --version`
-  
+
  ---
-  
+
 ![image](https://docs.docker.com/engine/getstarted/tutimg/tagger.png)
 
 ### Exercise
@@ -64,5 +64,4 @@ Build an image which contains Ruby and these gems:
  * ci_reporter_rspec
  * exi
 
-Share the image through Artifactory with the others in the course. Use the image which your neightbor built to run puppet-lint and rubocop against the existing Puppet code. 
- 
+Share the image through Artifactory with the others in the course. Use the image which your neightbor built to run puppet-lint and rubocop against the existing Puppet code.
