@@ -61,3 +61,14 @@
 ## Exercise
 
 Run two `tolleiv/pokesrv` containers on your system and present your favorite Pokemon on both of them. Check the resource consumption of the containers.
+
+## Exercise
+
+What are possible ways to change the health state of a container which is started like this:
+
+    docker run -d --name=sick_boy --health-cmd='test -f /healthy.txt' --health-interval=2s busybox sleep 1d
+    
+Health check can be run with:
+
+    docker inspect --format='{{.State.Health.Status}}' sick_boy
+    
