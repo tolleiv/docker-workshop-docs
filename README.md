@@ -9,7 +9,7 @@ These are commands used during a Docker workshop. It is devided into these parts
  * [Steps 05](./steps05.md) - Using docker-compose
 
 
- ## References and reources
+ ## References and resources
 
   * Official documentation on [docker.io](https://docs.docker.com/)
   * Docker Workshop by [harbur](https://github.com/harbur/docker-workshop.git)
