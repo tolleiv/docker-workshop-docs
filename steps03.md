@@ -44,6 +44,10 @@
 * [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
 * [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
 
+
+### Exercise
+
+Write a Dockerfile for the image built in the last exercise. Check with the others in the course how you could reach a low amount of layers `docker history <image> | wc -l`
     
     
  

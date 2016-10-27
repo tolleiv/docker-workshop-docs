@@ -57,3 +57,7 @@
 ### Commands within running containers
  * `docker exec <container> <cmd>`
  * `docker exec <container> bash`
+ 
+## Exercise
+
+Run two `tolleiv/pokesrv` containers on your system and present your favorite Pokemon on both of them. Check the resource consumption of the containers.
