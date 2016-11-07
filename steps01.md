@@ -20,7 +20,7 @@
 ### CLI jobs / scripts
 #### Run a simple script
   * `docker run --rm <image>`
-  * `docker run --rm tolleiv/randomquote`
+  * `docker run --rm tolleiv/misc:randomquote`
 
 #### Run a script which requires input
   * `cat file.txt | docker run --rm -i <image> <cmd>`
@@ -29,7 +29,7 @@
 
 #### Run a detached script / daemon
   * `docker run --rm -d <image>`
-  * `docker run --rm --name "quotes" -d tolleiv/randomquotes`
+  * `docker run --rm --name "quotes" -d tolleiv/misc:randomquotes`
   * `docker ps`
   * `docker attach <id>`
   * `docker attach quotes`
@@ -39,7 +39,7 @@
   * `docker run  --health-cmd='xxx' ...`
 
 #### Resource limitation
-  * `docker run --name "quotes" -m 100M -d tolleiv/randomquotes`
+  * `docker run --name "quotes" -m 100M -d tolleiv/misc:randomquotes`
 
 ### Configuration
  * `docker run --env TEST=works <image>`

@@ -15,12 +15,12 @@
 ### Exercise
 
 * Create a new bridge network on your host
-* Bring up three containers based on "tolleiv/elaticsearch_w_hq" within that network
+* Bring up three containers based on "tolleiv/misc:elaticsearch_w_hq" within that network
   * Make sure one of them forwards port 9200 to your host so you can inspect the cluster state
   * Make sure one of them is named so the others can use it for discovery with `--discovery.zen.ping.unicast.hosts=<name_one>`
   * Limit resources of each container
 * Load some sample data with:
-  * `docker run --rm -e ES_URL=<name_one>:9200 --network=<nw> tolleiv/es_sampledata`
+  * `docker run --rm -e ES_URL=<name_one>:9200 --network=<nw> tolleiv/misc:es_sampledata`
 
 ### Docker Swarm
 
