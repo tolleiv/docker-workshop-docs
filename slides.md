@@ -1,3 +1,7 @@
+<!--
+$theme: gaia
+template: gaia
+-->
 #### Waiting for everyone to show up?
 
 `docker pull alpine`
@@ -32,22 +36,20 @@
 	* Docker network
 	* Docker-compose
 
-<!-- footer:* Found a tpyo in the slides? Send a PR to github.com/tolleiv/docker-workshop-docs -->
+<!-- *footer:* Found a tpyo in the slides? Send a PR to github.com/tolleiv/docker-workshop-docs -->
 
 ----
-
 ### Not included*
 
-* DevOps Culture foo
+* DevOps Culture
 * Deployment (Pipeline) related considerations
 * Tooling comparision
 * History
-* Benchmark
+* Benchmarks
 * Container hardening
 * Docker swarm
-* Kubernetes 
 * Minecraft docker clients
-<!-- footer:* These things are important but not covered here -->
+<!-- *footer:* These things are important but not covered here -->
 
 ----
 
@@ -60,22 +62,19 @@
 
 ![image](https://docs.docker.com/engine/article-img/architecture.svg)
 
-<!-- footer:  -->
-
 ----
 
 ### Docker container lifecycle
-  * `docker create` creates a container but does not start it.
-  * `docker rename` allows the container to be renamed.
-  * `docker run` creates and starts a container in one operation.
-  * `docker stop` stops a started container
-  * `docker restart` stops and starts a container.
-  * `docker pause` pauses a running container, "freezing" it in place.
-  * `docker unpause` will unpause a running container.
-  * `docker wait` blocks until running container stops.
-  * `docker kill` sends a SIGKILL to a running container.
-  * `docker rm` deletes a (stopped) container.
-  * `docker update` updates a container's resource limits.
+   `docker create` creates a container but does not start it.
+   `docker rename` allows the container to be renamed.
+   `docker run` creates and starts a container in one operation.
+   `docker stop` stops a started container
+   `docker restart` stops and starts a container.
+   `docker pause` pauses a running container, "freezing" it in place.
+   `docker unpause` will unpause a running container.
+   `docker wait` blocks until running container stops.
+   `docker kill` sends a SIGKILL to a running container.
+   `docker rm` deletes a (stopped) container.
 
 ----
 ### Run whatever is in the container
@@ -107,7 +106,7 @@
    `docker run --rm -t -i --name "quotes" tolleiv/misc:randomquotes`
    \-> STRG+C
    
-With a shell
+With a shell:
    
    `docker run --rm -t -i alpine sh`
    
@@ -142,21 +141,23 @@ Health checks
    `docker run --name "quotes" -m 100M -d tolleiv/misc:randomquotes`
 
    `docker stats`
-   
+
+   `docker update -m 300M quotes`
+
 ----
 #### Configuration
 
    `docker run --env TEST=works alpine env`
 
 ----
-### Ports
+#### Ports
 
    `docker run -d -p hostPort:containerPort <image>`
 
    `docker run -d -p 8080:8080 tolleiv/pokesrv`
    
 ----
-### Volumes
+#### Volumes
 
    `docker run -d -v /hostDir:/containerDir <image>`
    
@@ -164,7 +165,7 @@ Health checks
 
 ----
 
-### Commands within running containers
+#### Commands within running containers
 
 
    `docker exec <container> <cmd>`
@@ -178,7 +179,7 @@ Health checks
 Run two `tolleiv/pokesrv` containers on your system and present your favorite Pokemon on both of them. Check the resource consumption of the containers.
 
 
-<!-- footer: List of Pokemon: https://en.wikipedia.org/wiki/List_of_Pok%C3%A9mon -->
+<!-- *footer: List of Pokemon: https://en.wikipedia.org/wiki/List_of_Pok%C3%A9mon -->
 
 ----
 ## Exercise
@@ -190,8 +191,6 @@ What are possible ways to change the health state of a container which is starte
 Health check can be run with:
 
    `docker inspect --format='{{.State.Health.Status}}' sick_boy`
-
-<!-- footer:  -->
 
 ----
 ### What did we learn so far?
@@ -214,9 +213,7 @@ Health check can be run with:
    * [Docker Trusted Registry](https://docs.docker.com/docker-trusted-registry/)
    * [Jfrog Artifactory](https://www.jfrog.com/confluence/display/RTF/Docker+Registry)
 * SaaS Providers
-   * [Google Container Registry](https://cloud.google.com/container-registry/)
-   * [CoreOS quai.io](https://quay.io/)
-   * [Amazon AWS ECR](https://aws.amazon.com/de/ecr/)
+   * [Google Container Registry](https://cloud.google.com/container-registry/), [CoreOS quai.io](https://quay.io/),  [Amazon AWS ECR](https://aws.amazon.com/de/ecr/)
 
 ----
 #### Using a registry
@@ -235,10 +232,29 @@ Health check can be run with:
 ----
 #### Creating an image
 
-![image](https://s3.amazonaws.com/dev.assets.neo4j.com/wp-content/uploads/20160112150631/image-layers-docker.png)
+![image](https://nvisium.com/blog/2014/10/15/docker-cache-friend-or-foe/1QndWJyZ7y4Ke9tZw87-uU73nXdKYKuQjMD3XTv3M6PPSvEYL2mBvPHFEO49BLPdcclgFxhM7pDs1E5G39VmRo4vg189grZ-0lz3OkpxpEWjQcWQJ20ixTxu6PUyTo5RjQ)
 
 ----
-#### Creating an image for jq
+#### Why is this possible?
+
+   ~> copy-on-write storage
+   
+   provided by???
+
+   `docker info | head -n 10`
+
+    Storage Driver: overlay
+      Backing Filesystem: extfs
+
+
+   
+----
+#### Storage drivers
+
+![](https://docs.docker.com/engine/userguide/storagedriver/images/driver-pros-cons.png)
+
+----
+#### Creating an image for jq (1)
 
     docker run -it --name jq alpine sh
        apk --update add jq
@@ -246,6 +262,8 @@ Health check can be run with:
        exit
     docker commit jq docker-jq
 
+----
+#### Creating an image for jq (2)
 Cleaning up the container
 
    `docker rm jq`
@@ -311,7 +329,6 @@ Share the image through Artifactory with the others in the course. Use the image
     RUN echo "echo \"this is version 1\"" >> /test.sh
     ENTRYPOINT ["sh", "/test.sh"]
 
-
    `docker build -t me/container:test . `
    `docker build -f /path/to/Dockerfile`
 
@@ -324,15 +341,19 @@ Share the image through Artifactory with the others in the course. Use the image
 * [RUN](https://docs.docker.com/engine/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
 * [CMD](https://docs.docker.com/engine/reference/builder/#cmd) provide defaults for an executing container.
 * [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
-* [ENV](https://docs.docker.com/engine/reference/builder/#env) sets environment variable.
-* [ADD](https://docs.docker.com/engine/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
-* [COPY](https://docs.docker.com/engine/reference/builder/#copy) copies new files or directories to container.
 
 ----
 ##### Instructions (2)
 
+* [ENV](https://docs.docker.com/engine/reference/builder/#env) sets environment variable.
+* [ADD](https://docs.docker.com/engine/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
+* [COPY](https://docs.docker.com/engine/reference/builder/#copy) copies new files or directories to container.
 * [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) configures a container that will run as an executable.
 * [VOLUME](https://docs.docker.com/engine/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
+
+----
+##### Instructions (3)
+
 * [USER](https://docs.docker.com/engine/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
 * [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) sets the working directory.
 * [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
@@ -345,10 +366,10 @@ Share the image through Artifactory with the others in the course. Use the image
 
 Find the smallest denomination of these images
 
- * [Ubuntu - hub.docker.com/_/ubuntu/](https://hub.docker.com/_/ubuntu/)
- * [PHP - hub.docker.com/_/php/](https://hub.docker.com/_/php/)
- * [Golang - hub.docker.com/_/golang/](https://hub.docker.com/_/golang/)
- * [Busybox - hub.docker.com/_/busybox/](https://hub.docker.com/_/busybox/)
+ * Ubuntu - [hub.docker.com/_/ubuntu/](https://hub.docker.com/_/ubuntu/)
+ * PHP - [hub.docker.com/_/php/](https://hub.docker.com/_/php/)
+ * Golang - [hub.docker.com/_/golang/](https://hub.docker.com/_/golang/)
+ * Busybox - [hub.docker.com/_/busybox/](https://hub.docker.com/_/busybox/)
 
 ----
 
@@ -385,13 +406,13 @@ Write a Dockerfile for the puppet-lint image built before. Check with the others
 ----
 ### Exercise
 
-* Create a new bridge network on your host
-* Bring up three containers based on `tolleiv/misc:elasticsearch_w_hq` within that network
-  * Make sure one of them forwards port 9200 to your host so you can inspect the cluster state
-  * Make sure one of them is named so the others can use it for discovery with `--discovery.zen.ping.unicast.hosts=<name_one>`
+Create a new bridge network on your host
+Bring up three containers based on `tolleiv/misc:elasticsearch_w_hq` within that network
+  * Forwards port 9200 to your host so you can inspect the cluster state
+  * Name the first one to use it for discovery with `--discovery.zen.ping.unicast.hosts=<name_one>`
   * Limit resources of each container
-* Load some sample data with:
-  * `docker run --rm -e ES_URL=<name_one>:9200 --network=<nw> tolleiv/misc:es_sampledata`
+Load some sample data with:
+  `docker run --rm -e ES_URL=<name_one>:9200 --network=<nw> tolleiv/misc:es_sampledata`
 
 ----
 ### What did we learn so far?
@@ -471,4 +492,4 @@ Write a Dockerfile for the puppet-lint image built before. Check with the others
 * Forced cleanup
 `docker ps -a -q | docker stop ; docker ps -a -q | xargs docker rm`
 
-<!-- footer:* defining these as alias in your .bashrc / .zshrc might be useful -->
+<!-- *footer:* defining these as alias in your .bashrc / .zshrc might be useful -->
