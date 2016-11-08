@@ -8,6 +8,7 @@ These are commands used during a Docker workshop. It is devided into these parts
  * [Steps 04](./steps04.md) - Using more then one container / docker networking
  * [Steps 05](./steps05.md) - Using docker-compose
 
+ * [Slides](./slides.md) - Actual slides as rendered with [Marp](https://yhatt.github.io/marp/)
 
  ## References and resources
 
