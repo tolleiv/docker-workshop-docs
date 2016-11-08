@@ -44,6 +44,14 @@
 * [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
 * [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
 
+#### Exercise
+
+Find the smallest denomination of these images
+
+ * [Ubuntu - hub.docker.com/_/ubuntu/](https://hub.docker.com/_/ubuntu/)
+ * [PHP - hub.docker.com/_/php/](https://hub.docker.com/_/php/)
+ * [Golang - hub.docker.com/_/golang/](https://hub.docker.com/_/golang/)
+ * [Busybox - hub.docker.com/_/busybox/](https://hub.docker.com/_/busybox/)
 
 ### Exercise
 
