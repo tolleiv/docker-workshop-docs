@@ -1,3 +1,15 @@
+#### Waiting for everyone to show up?
+
+`docker pull alpine`
+`docker pull busybox`
+`docker pull registry:2`
+`docker pull tolleiv/pokesrv`
+`docker pull tolleiv/misc:randomquote`
+`docker pull tolleiv/misc:randomquotes`
+`docker pull tolleiv/misc:elasticsearch_w_hq`
+`docker pull tolleiv/misc:es_sampledata`
+
+----
 ### What you asked for ....
 
 * Usecases
@@ -73,7 +85,7 @@
 ----
 ### Run a command within a container
   
-  `cat LICENSE | docker run --rm -i alpine wc -l`
+  `cat a-file.txt | docker run --rm -i alpine wc -l`
   
 ----
 ### Run a script with an output stream #1
@@ -127,7 +139,7 @@ Health checks
 ----
 #### Resource limitation
 
-   `docker run --name "quotes" -m 100M -d tolleiv/randomquotes`
+   `docker run --name "quotes" -m 100M -d tolleiv/misc:randomquotes`
 
    `docker stats`
    
@@ -157,7 +169,7 @@ Health checks
 
    `docker exec <container> <cmd>`
 
-   `docker run --rm -d --name "quotes" tolleiv/randomquotes`
+   `docker run --rm -d --name "quotes" tolleiv/misc:randomquotes`
    `docker exec quotes ps aux`
 
 ----
@@ -177,7 +189,7 @@ What are possible ways to change the health state of a container which is starte
 
 Health check can be run with:
 
-   `docker inspect --format='{{.State.Health.Status}}' sick_boy``
+   `docker inspect --format='{{.State.Health.Status}}' sick_boy`
 
 <!-- footer:  -->
 
@@ -245,7 +257,6 @@ Inspecting the image
 Using the image
 
    `docker run --rm -it docker-jq jq --version`
-    
     
 ----
 #### Using the local repository
@@ -375,7 +386,7 @@ Write a Dockerfile for the puppet-lint image built before. Check with the others
 ### Exercise
 
 * Create a new bridge network on your host
-* Bring up three containers based on `tolleiv/misc:elaticsearch_w_hq` within that network
+* Bring up three containers based on `tolleiv/misc:elasticsearch_w_hq` within that network
   * Make sure one of them forwards port 9200 to your host so you can inspect the cluster state
   * Make sure one of them is named so the others can use it for discovery with `--discovery.zen.ping.unicast.hosts=<name_one>`
   * Limit resources of each container
