@@ -24,7 +24,10 @@
 
 ### Docker Swarm
 
-TBD ... https://docs.docker.com/engine/swarm/
+ * `docker swarm init` - Create multi-node cluster
+ * `docker swarm join` - Join an existing cluster
+ * `docker swarm leave` - Leave a cluster
+ * `docker swarm join-token (manager|worker)` - Manage credentials for the cluster
 
 ### Exercise
 
