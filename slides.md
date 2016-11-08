@@ -447,3 +447,17 @@ Write a Dockerfile for the puppet-lint image built before. Check with the others
 * Benefits?
 * Drawbacks?
 * Problems?
+
+----
+#### Cleaning up
+
+* Cleaning up containers
+`docker ps -a -q | xargs docker rm`
+
+* Cleaning up images
+`docker images -q | xargs docker rmi`
+
+* Forced cleanup
+`docker ps -a -q | docker stop ; docker ps -a -q | xargs docker rm`
+
+<!-- footer:* defining these as alias in your .bashrc / .zshrc might be useful -->
