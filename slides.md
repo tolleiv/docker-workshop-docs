@@ -88,13 +88,13 @@ $size: 16:9
   `cat a-file.txt | docker run --rm -i alpine wc -l`
   
 ----
-### Run a script with an output stream #1
+### Run a script with an output stream (1)
 
   `docker run --rm --name "quotes" tolleiv/misc:randomquotes`
    \+ STRG+C ... ???
 
 ----
-### Run a script with an output stream #2
+### Run a script with an output stream (2)
 
   `docker run --rm --name "quotes" tolleiv/misc:randomquotes`
   \->
@@ -102,7 +102,7 @@ $size: 16:9
   `docker kill quotes`
   
 ----
-### Terminated / interactive containers
+### Interactive containers w. TTY
 
    `docker run --rm -t -i --name "quotes" tolleiv/misc:randomquotes`
    \-> STRG+C
@@ -110,7 +110,7 @@ $size: 16:9
 With a shell:
    
    `docker run --rm -t -i alpine sh`
-   
+
 ----
 ### Attaching to detached containers
 
@@ -118,7 +118,16 @@ With a shell:
 
   `docker attach quotes`
   CTRL+P CTRL+Q
-  
+
+----
+### Docker run flags so far
+
+  * ` -d, --detach` Run container in background and print container ID
+  * ` -i, --interactive` Keep STDIN open even if not attached
+  * ` -t, --tty` Allocate a pseudo-TTY
+  * `--rm` Automatically remove the container when it exits
+  * `--name string` Assign a name to the container
+
 ----
 
 ### Monitoring & Resources
@@ -165,9 +174,13 @@ Health checks
    `docker run -it -v $(pwd):/var/host alpine sh`
 
 ----
+#### Reading *log* output
+
+   `docker logs <container>`
+
+----
 
 #### Commands within running containers
-
 
    `docker exec <container> <cmd>`
 
@@ -178,7 +191,6 @@ Health checks
 ## Exercise
 
 Run two `tolleiv/pokesrv` containers on your system and present your favorite Pokemon on both of them. Check the resource consumption of the containers.
-
 
 <!-- *footer: List of Pokemon: https://en.wikipedia.org/wiki/List_of_Pok%C3%A9mon -->
 
@@ -206,6 +218,28 @@ Health check can be run with:
 ![image](https://docs.docker.com/engine/article-img/architecture.svg)
 
 ----
+#### Layers of an image
+
+![image](https://nvisium.com/blog/2014/10/15/docker-cache-friend-or-foe/1QndWJyZ7y4Ke9tZw87-uU73nXdKYKuQjMD3XTv3M6PPSvEYL2mBvPHFEO49BLPdcclgFxhM7pDs1E5G39VmRo4vg189grZ-0lz3OkpxpEWjQcWQJ20ixTxu6PUyTo5RjQ)
+
+----
+#### Why is this possible?
+
+   ~> copy-on-write storage
+   
+   provided by???
+
+   `docker info | head -n 10`
+
+    Storage Driver: overlay
+      Backing Filesystem: extfs
+   
+----
+#### Storage drivers
+
+![](https://docs.docker.com/engine/userguide/storagedriver/images/driver-pros-cons.png)
+
+----
 #### Where do we get our images from?
 
  * Central registry under [hub.docker.com](hub.docker.com) ~ [Documentation](https://docs.docker.com/docker-hub/)
@@ -229,30 +263,6 @@ Health check can be run with:
  * `docker run -d -p 5000:5000 --name registry registry:2`
    * `open http://localhost:5000/v2/`
 * `export REGISTRY=localhost:5000`
-
-----
-#### Creating an image
-
-![image](https://nvisium.com/blog/2014/10/15/docker-cache-friend-or-foe/1QndWJyZ7y4Ke9tZw87-uU73nXdKYKuQjMD3XTv3M6PPSvEYL2mBvPHFEO49BLPdcclgFxhM7pDs1E5G39VmRo4vg189grZ-0lz3OkpxpEWjQcWQJ20ixTxu6PUyTo5RjQ)
-
-----
-#### Why is this possible?
-
-   ~> copy-on-write storage
-   
-   provided by???
-
-   `docker info | head -n 10`
-
-    Storage Driver: overlay
-      Backing Filesystem: extfs
-
-
-   
-----
-#### Storage drivers
-
-![](https://docs.docker.com/engine/userguide/storagedriver/images/driver-pros-cons.png)
 
 ----
 #### Creating an image for jq (1)
@@ -293,6 +303,13 @@ Using the image
 #### Image tags structure
 
 ![image](https://docs.docker.com/engine/getstarted/tutimg/tagger.png)
+
+ `docker tag <container> name`
+ `docker tag <container> example.org/name`
+ `docker tag <container> user/name`
+ `docker tag <container> name:v1`
+ `docker tag <container> name:latest`
+ `docker tag <container> example.org/account/name:v2`
 
 ----
 ### Exercise
@@ -408,7 +425,7 @@ Write a Dockerfile for the puppet-lint image built before. Check with the others
 
 Create a new bridge network on your host
 Bring up three containers based on `tolleiv/misc:elasticsearch_w_hq` within that network
-  * Forwards port 9200 to your host so you can inspect the cluster state
+  * Forward port 9200 to your host so you can inspect the cluster state
   * Name the first one to use it for discovery with `--discovery.zen.ping.unicast.hosts=<name_one>`
   * Limit resources of each container
 Load some sample data with:
