@@ -1,6 +1,7 @@
 <!--
 $theme: gaia
 template: gaia
+$size: 16:9
 -->
 #### Waiting for everyone to show up?
 
@@ -113,7 +114,7 @@ With a shell:
 ----
 ### Attaching to detached containers
 
-  `docker run --rm -d --name "quotes" tolleiv/misc:randomquotes`
+  `docker run -d --name "quotes" tolleiv/misc:randomquotes`
 
   `docker attach quotes`
   CTRL+P CTRL+Q
