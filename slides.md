@@ -220,7 +220,7 @@ Health check can be run with:
 ----
 #### Layers of an image
 
-![image](https://nvisium.com/blog/2014/10/15/docker-cache-friend-or-foe/1QndWJyZ7y4Ke9tZw87-uU73nXdKYKuQjMD3XTv3M6PPSvEYL2mBvPHFEO49BLPdcclgFxhM7pDs1E5G39VmRo4vg189grZ-0lz3OkpxpEWjQcWQJ20ixTxu6PUyTo5RjQ)
+![image](https://docs.docker.com/engine/userguide/storagedriver/images/container-layers.jpg)
 
 ----
 #### Why is this possible?
