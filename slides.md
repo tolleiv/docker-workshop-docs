@@ -171,7 +171,7 @@ Health checks
 
    `docker exec <container> <cmd>`
 
-   `docker run --rm -d --name "quotes" tolleiv/misc:randomquotes`
+   `docker run -d --name "quotes" tolleiv/misc:randomquotes`
    `docker exec quotes ps aux`
 
 ----
@@ -259,7 +259,6 @@ Health check can be run with:
 
     docker run -it --name jq alpine sh
        apk --update add jq
-       ex
        exit
     docker commit jq docker-jq
 
@@ -491,6 +490,6 @@ Load some sample data with:
 `docker images -q | xargs docker rmi`
 
 * Forced cleanup
-`docker ps -a -q | docker stop ; docker ps -a -q | xargs docker rm`
+`docker ps -a -q | xargs docker stop ; docker images -q | xargs docker rmi -f`
 
 <!-- *footer:* defining these as alias in your .bashrc / .zshrc might be useful -->

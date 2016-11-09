@@ -28,8 +28,8 @@
   * `cat puppet.pp | docker run --rm -i tolleiv/puppet-lint rubocop` *** TBD
 
 #### Run a detached script / daemon
-  * `docker run --rm -d <image>`
-  * `docker run --rm --name "quotes" -d tolleiv/misc:randomquotes`
+  * `docker run -d <image>`
+  * `docker run --name "quotes" -d tolleiv/misc:randomquotes`
   * `docker ps`
   * `docker attach <id>`
   * `docker attach quotes`
